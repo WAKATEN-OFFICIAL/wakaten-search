@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WAKATEN検索ツール</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    text-align:center;
+    width:100%;
+}
+
+.logo{
+    font-size:90px;
+    font-weight:bold;
+    margin-bottom:30px;
+    user-select:none;
+}
+
+.logo .b{color:#4285F4;}
+.logo .r{color:#EA4335;}
+.logo .y{color:#FBBC05;}
+.logo .g{color:#34A853;}
+
+.search-box{
+    width:650px;
+    max-width:90%;
+    margin:auto;
+}
+
+.search-box input{
+    width:100%;
+    padding:16px 22px;
+    border:1px solid #dcdcdc;
+    border-radius:30px;
+    font-size:18px;
+    outline:none;
+    transition:.2s;
+}
+
+.search-box input:hover,
+.search-box input:focus{
+    box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+
+.buttons{
+    margin-top:30px;
+}
+
+button{
+    border:none;
+    background:#f8f9fa;
+    padding:12px 22px;
+    border-radius:5px;
+    margin:8px;
+    font-size:15px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button:hover{
+    border:1px solid #dadce0;
+    box-shadow:0 1px 2px rgba(0,0,0,.15);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+<span class="b">W</span><span class="r">A</span><span class="y">K</span><span class="b">A</span><span class="g">T</span><span class="r">E</span><span class="b">N</span>
+</div>
+
+<form id="searchForm">
+<div class="search-box">
+<input
+type="text"
+id="search"
+placeholder="Googleで検索"
+autocomplete="off">
+</div>
+</form>
+
+<div class="buttons">
+<button onclick="youtube()">
+WAKATENのYouTubeを訪ねる
+</button>
+
+<button onclick="discord()">
+Discordを訪れる
+</button>
+</div>
+
+</div>
+
+<script>
+
+const box=document.getElementById("search");
+
+document.getElementById("searchForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const text=box.value.trim();
+
+if(text==="") return;
+
+window.location.href=
+"https://www.google.com/search?q="+encodeURIComponent(text);
+
+});
+
+function youtube(){
+
+window.open(
+"https://www.youtube.com/@%E3%82%8F%E3%81%8B%E3%81%A6%E3%82%93%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB",
+"_blank"
+);
+
+}
+
+function discord(){
+
+window.open(
+"https://discord.gg/XhtVuksb8K",
+"_blank"
+);
+
+}
+
+</script>
+
+</body>
+</html>
