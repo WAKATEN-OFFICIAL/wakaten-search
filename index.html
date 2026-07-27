@@ -18,7 +18,8 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    height:100vh;
+    min-height:100vh;
+    padding:20px;
 }
 
 .container{
@@ -26,11 +27,13 @@ body{
     width:100%;
 }
 
+/* ロゴ */
 .logo{
-    font-size:90px;
+    font-size:clamp(50px,12vw,90px);
     font-weight:bold;
     margin-bottom:30px;
     user-select:none;
+    word-break:break-word;
 }
 
 .logo .b{color:#4285F4;}
@@ -38,9 +41,10 @@ body{
 .logo .y{color:#FBBC05;}
 .logo .g{color:#34A853;}
 
+/* 検索欄 */
 .search-box{
     width:650px;
-    max-width:90%;
+    max-width:100%;
     margin:auto;
 }
 
@@ -49,7 +53,7 @@ body{
     padding:16px 22px;
     border:1px solid #dcdcdc;
     border-radius:30px;
-    font-size:18px;
+    font-size:18px; /* iPhoneズーム防止 */
     outline:none;
     transition:.2s;
 }
@@ -59,12 +63,13 @@ body{
     box-shadow:0 2px 8px rgba(0,0,0,.25);
 }
 
+/* ボタン */
 .buttons{
     margin-top:30px;
 }
 
 button{
-    border:1px solid transparent; /* ← ピクッ対策 */
+    border:1px solid transparent; /* レイアウトずれ防止 */
     background:#f8f9fa;
     padding:12px 22px;
     border-radius:5px;
@@ -75,7 +80,7 @@ button{
 }
 
 button:hover{
-    border-color:#dadce0; /* 色だけ変更 */
+    border-color:#dadce0;
     box-shadow:0 1px 2px rgba(0,0,0,.15);
 }
 
@@ -83,6 +88,48 @@ button:active{
     transform:none;
 }
 
+/* タブレット */
+@media (max-width:768px){
+
+    .logo{
+        margin-bottom:25px;
+    }
+
+    .search-box input{
+        font-size:17px;
+    }
+
+    button{
+        font-size:16px;
+    }
+}
+
+/* スマホ */
+@media (max-width:600px){
+
+    body{
+        padding:15px;
+    }
+
+    .logo{
+        margin-bottom:20px;
+    }
+
+    .buttons{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap:10px;
+    }
+
+    button{
+        width:100%;
+        max-width:350px;
+        margin:0;
+        padding:14px 20px;
+        font-size:16px;
+    }
+}
 </style>
 </head>
 
@@ -90,67 +137,61 @@ button:active{
 
 <div class="container">
 
-<div class="logo">
-<span class="b">W</span><span class="r">A</span><span class="y">K</span><span class="b">A</span><span class="g">T</span><span class="r">E</span><span class="b">N</span>
-</div>
+    <div class="logo">
+        <span class="b">W</span><span class="r">A</span><span class="y">K</span><span class="b">A</span><span class="g">T</span><span class="r">E</span><span class="b">N</span>
+    </div>
 
-<form id="searchForm">
-<div class="search-box">
-<input
-type="text"
-id="search"
-placeholder="Googleで検索"
-autocomplete="off">
-</div>
-</form>
+    <form id="searchForm">
+        <div class="search-box">
+            <input
+                type="text"
+                id="search"
+                placeholder="Googleで検索"
+                autocomplete="off">
+        </div>
+    </form>
 
-<div class="buttons">
-<button onclick="youtube()">
-YouTubeを訪ねる
-</button>
+    <div class="buttons">
+        <button onclick="youtube()">
+            YouTubeを訪ねる
+        </button>
 
-<button onclick="discord()">
-Discordを訪れる
-</button>
-</div>
+        <button onclick="discord()">
+            Discordを訪れる
+        </button>
+    </div>
 
 </div>
 
 <script>
+const box = document.getElementById("search");
 
-const box=document.getElementById("search");
+document.getElementById("searchForm").addEventListener("submit", function(e){
 
-document.getElementById("searchForm").addEventListener("submit",function(e){
+    e.preventDefault();
 
-e.preventDefault();
+    const text = box.value.trim();
 
-const text=box.value.trim();
+    if(text === "") return;
 
-if(text==="") return;
-
-window.location.href=
-"https://www.google.com/search?q="+encodeURIComponent(text);
-
+    window.location.href =
+        "https://www.google.com/search?q=" +
+        encodeURIComponent(text);
 });
 
 function youtube(){
-
-window.open(
-"https://www.youtube.com/@%E3%82%8F%E3%81%8B%E3%81%A6%E3%82%93%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB",
-"_blank"
-);
-
+    window.open(
+        "https://www.youtube.com/@%E3%82%8F%E3%81%8B%E3%81%A6%E3%82%93%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB",
+        "_blank"
+    );
 }
 
 function discord(){
-
-window.open(
-"https://discord.gg/XhtVuksb8K",
-"_blank"
-);
-
+    window.open(
+        "https://discord.gg/XhtVuksb8K",
+        "_blank"
+    );
 }
-
 </script>
 
 </body>
