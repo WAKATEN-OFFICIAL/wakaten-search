@@ -3,9 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>WAKATEN検索ツール</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -27,172 +29,456 @@ body{
     width:100%;
 }
 
+
 /* ロゴ */
+
 .logo{
     font-size:clamp(50px,12vw,90px);
     font-weight:bold;
     margin-bottom:30px;
     user-select:none;
-    word-break:break-word;
+    letter-spacing:-5px;
 }
 
-.logo .b{color:#4285F4;}
-.logo .r{color:#EA4335;}
-.logo .y{color:#FBBC05;}
-.logo .g{color:#34A853;}
+.logo span{
+    display:inline-block;
+    padding:0;
+    margin:0;
+    letter-spacing:0;
+}
 
-/* 検索欄 */
+.logo .b{
+    color:#4285F4;
+}
+
+.logo .r{
+    color:#EA4335;
+}
+
+.logo .y{
+    color:#FBBC05;
+}
+
+.logo .g{
+    color:#34A853;
+}
+
+
+/* 検索 */
+
 .search-box{
     width:650px;
     max-width:100%;
     margin:auto;
 }
 
+
 .search-box input{
+
     width:100%;
+
     padding:16px 22px;
+
     border:1px solid #dcdcdc;
+
     border-radius:30px;
-    font-size:18px; /* iPhoneズーム防止 */
+
+    font-size:18px;
+
     outline:none;
+
     transition:.2s;
+
 }
+
 
 .search-box input:hover,
 .search-box input:focus{
+
     box-shadow:0 2px 8px rgba(0,0,0,.25);
+
 }
 
+
+
 /* ボタン */
+
 .buttons{
     margin-top:30px;
 }
 
+
 button{
-    border:1px solid transparent; /* レイアウトずれ防止 */
+
+    border:1px solid transparent;
+
     background:#f8f9fa;
+
     padding:12px 22px;
+
     border-radius:5px;
+
     margin:8px;
+
     font-size:15px;
+
     cursor:pointer;
-    transition:.2s;
+
 }
+
 
 button:hover{
+
     border-color:#dadce0;
+
     box-shadow:0 1px 2px rgba(0,0,0,.15);
+
 }
 
-button:active{
-    transform:none;
+
+
+/* 検索結果 */
+
+#results{
+
+    width:650px;
+
+    max-width:100%;
+
+    margin:40px auto 0;
+
+    text-align:left;
+
 }
 
-/* タブレット */
-@media (max-width:768px){
 
-    .logo{
-        margin-bottom:25px;
-    }
+.result{
 
-    .search-box input{
-        font-size:17px;
-    }
+    margin-bottom:25px;
 
-    button{
-        font-size:16px;
-    }
 }
+
+
+.result a{
+
+    color:#1a0dab;
+
+    font-size:20px;
+
+    text-decoration:none;
+
+}
+
+
+.result a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+.result p{
+
+    color:#555;
+
+    margin-top:6px;
+
+}
+
+
 
 /* スマホ */
-@media (max-width:600px){
 
-    body{
-        padding:15px;
-    }
+@media(max-width:600px){
 
-    .logo{
-        margin-bottom:20px;
-    }
-
-    .buttons{
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        gap:10px;
-    }
-
-    button{
-        width:100%;
-        max-width:350px;
-        margin:0;
-        padding:14px 20px;
-        font-size:16px;
-    }
+body{
+    padding:15px;
 }
+
+
+.logo{
+    margin-bottom:20px;
+}
+
+
+.buttons{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+}
+
+
+button{
+
+    width:100%;
+
+    max-width:350px;
+
+    margin:5px;
+
+}
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
 
-    <div class="logo">
-        <span class="b">W</span><span class="r">A</span><span class="y">K</span><span class="b">A</span><span class="g">T</span><span class="r">E</span><span class="b">N</span>
-    </div>
 
-    <form id="searchForm">
-        <div class="search-box">
-            <input
-                type="text"
-                id="search"
-                placeholder="Googleで検索"
-                autocomplete="off">
-        </div>
-    </form>
+<div class="logo">
+<span class="b">W</span><span class="r">A</span><span class="y">K</span><span class="b">A</span><span class="g">T</span><span class="r">E</span><span class="b">N</span>
+</div>
 
-    <div class="buttons">
-        <button onclick="youtube()">
-            YouTubeを訪れる
-        </button>
 
-        <button onclick="discord()">
-            Discordを訪れる
-        </button>
-    </div>
+
+<form id="searchForm">
+
+<div class="search-box">
+
+<input
+type="text"
+id="search"
+placeholder="WAKATEN検索"
+autocomplete="off">
 
 </div>
 
+</form>
+
+
+
+<div class="buttons">
+
+<button onclick="youtube()">
+YouTubeを訪れる
+</button>
+
+
+<button onclick="discord()">
+Discordを訪れる
+</button>
+
+</div>
+
+
+
+<div id="results"></div>
+
+
+
+</div>
+
+
+
+
 <script>
-const box = document.getElementById("search");
 
-document.getElementById("searchForm").addEventListener("submit", function(e){
 
-    e.preventDefault();
+const box =
+document.getElementById("search");
 
-    const text = box.value.trim();
+const results =
+document.getElementById("results");
 
-    if(text === "") return;
 
-    window.location.href =
-        "https://www.google.com/search?q=" +
-        encodeURIComponent(text);
+
+document
+.getElementById("searchForm")
+.addEventListener(
+"submit",
+function(e){
+
+
+e.preventDefault();
+
+
+const text =
+box.value.trim();
+
+
+if(text==="")
+return;
+
+
+wakatenSearch(text);
+
+
+
 });
 
-function youtube(){
-    window.open(
-        "https://www.youtube.com/@%E3%82%8F%E3%81%8B%E3%81%A6%E3%82%93%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB",
-        "_blank"
-    );
+
+
+
+
+async function wakatenSearch(text){
+
+
+results.innerHTML=
+"検索中...";
+
+
+
+try{
+
+
+const url =
+
+"https://api.duckduckgo.com/?q="
+
++ encodeURIComponent(text)
+
++ "&format=json&no_html=1";
+
+
+
+const response =
+await fetch(url);
+
+
+
+const data =
+await response.json();
+
+
+
+results.innerHTML="";
+
+
+
+let count=0;
+
+
+
+// 概要
+
+if(data.AbstractText){
+
+
+results.innerHTML += `
+
+<div class="result">
+
+<a href="${data.AbstractURL}" target="_blank">
+
+${data.Heading}
+
+</a>
+
+
+<p>
+
+${data.AbstractText}
+
+</p>
+
+</div>
+
+`;
+
+
+count++;
+
 }
 
-function discord(){
-    window.open(
-        "https://discord.gg/XhtVuksb8K",
-        "_blank"
-    );
+
+
+
+
+// 関連結果
+
+data.RelatedTopics.forEach(item=>{
+
+
+if(item.Text){
+
+
+results.innerHTML += `
+
+<div class="result">
+
+<a href="${item.FirstURL}" target="_blank">
+
+${item.Text}
+
+</a>
+
+</div>
+
+`;
+
+
+count++;
+
 }
+
+
+});
+
+
+
+if(count===0){
+
+results.innerHTML=
+"検索結果がありません";
+
+}
+
+
+
+}catch(error){
+
+
+results.innerHTML=
+"検索エラーが発生しました";
+
+}
+
+
+}
+
+
+
+
+
+function youtube(){
+
+window.open(
+
+"https://www.youtube.com/@%E3%82%8F%E3%81%8B%E3%81%A6%E3%82%93%E3%83%81%E3%83%A3%E3%83%B3%E3%83%8D%E3%83%AB",
+
+"_blank"
+
+);
+
+}
+
+
+
+function discord(){
+
+window.open(
+
+"https://discord.gg/XhtVuksb8K",
+
+"_blank"
+
+);
+
+}
+
+
 </script>
+
 
 </body>
 </html>
