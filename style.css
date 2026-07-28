@@ -1,0 +1,466 @@
+```css id="dhxzt2"
+/* =========================
+   WAKATEN Search Theme
+========================= */
+
+:root{
+    --main:#00c853;
+    --main-dark:#00a844;
+
+    --bg:#ffffff;
+    --bg2:#f5f5f5;
+
+    --text:#111111;
+    --text-sub:#666666;
+
+    --border:#dddddd;
+
+    --shadow:
+        0 4px 12px rgba(0,0,0,.08);
+
+    --radius:16px;
+}
+
+/* ダークモード */
+
+body.dark{
+    --bg:#111111;
+    --bg2:#1c1c1c;
+
+    --text:#ffffff;
+    --text-sub:#bdbdbd;
+
+    --border:#333333;
+
+    --shadow:
+        0 4px 12px rgba(0,0,0,.35);
+}
+
+/* リセット */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+
+    font-family:
+        "Segoe UI",
+        "Meiryo",
+        sans-serif;
+
+    min-height:100vh;
+
+    transition:
+        background .25s,
+        color .25s;
+}
+
+/* =========================
+   共通
+========================= */
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none !important;
+}
+
+/* =========================
+   サイドバー
+========================= */
+
+.sidebar{
+    width:260px;
+
+    background:var(--bg2);
+
+    border-right:
+        1px solid var(--border);
+
+    padding:20px;
+
+    position:fixed;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    overflow-y:auto;
+}
+
+.sidebar h2{
+    color:var(--main);
+
+    margin-bottom:20px;
+}
+
+.sidebar button{
+    width:100%;
+
+    margin-bottom:10px;
+
+    border:none;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    background:var(--main);
+
+    color:white;
+
+    transition:.2s;
+}
+
+.sidebar button:hover{
+    background:var(--main-dark);
+}
+
+/* =========================
+   メイン
+========================= */
+
+.main{
+    margin-left:260px;
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    padding:30px;
+}
+
+/* =========================
+   ロゴ
+========================= */
+
+.logo{
+    font-size:72px;
+
+    font-weight:700;
+
+    color:var(--main);
+
+    user-select:none;
+
+    margin-bottom:30px;
+}
+
+/* =========================
+   検索
+========================= */
+
+.search-area{
+    width:min(800px,95%);
+}
+
+.search-box{
+    width:100%;
+
+    padding:18px 24px;
+
+    border-radius:999px;
+
+    border:
+        1px solid var(--border);
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    font-size:18px;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+.search-box:hover,
+.search-box:focus{
+    border-color:var(--main);
+
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   タブ
+========================= */
+
+.tabs{
+    display:flex;
+
+    gap:10px;
+
+    margin-top:16px;
+
+    flex-wrap:wrap;
+}
+
+.tab{
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    background:var(--bg2);
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.tab:hover{
+    transform:translateY(-2px);
+}
+
+.tab.active{
+    background:var(--main);
+
+    color:white;
+}
+
+/* =========================
+   ボタン
+========================= */
+
+.buttons{
+    margin-top:25px;
+}
+
+.buttons button{
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    background:var(--main);
+
+    color:white;
+
+    margin-right:10px;
+
+    transition:.2s;
+}
+
+.buttons button:hover{
+    background:var(--main-dark);
+}
+
+/* =========================
+   ショートカット
+========================= */
+
+.shortcuts{
+    margin-top:40px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(120px,1fr));
+
+    gap:15px;
+
+    width:min(800px,95%);
+}
+
+.shortcut{
+    background:var(--bg2);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    height:90px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.shortcut:hover{
+    transform:translateY(-4px);
+
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   履歴
+========================= */
+
+.history{
+    margin-top:25px;
+}
+
+.history h3{
+    margin-bottom:10px;
+}
+
+.history div{
+    padding:8px 0;
+
+    cursor:pointer;
+
+    color:var(--text-sub);
+}
+
+.history div:hover{
+    color:var(--main);
+}
+
+/* =========================
+   検索結果
+========================= */
+
+.results{
+    width:min(1000px,95%);
+
+    margin-top:20px;
+}
+
+.result{
+    background:var(--bg2);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:var(--radius);
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    transition:.2s;
+}
+
+.result:hover{
+    box-shadow:var(--shadow);
+}
+
+.result a{
+    color:#1565c0;
+
+    font-size:22px;
+
+    font-weight:600;
+}
+
+.result p{
+    margin-top:8px;
+
+    color:var(--text-sub);
+
+    line-height:1.6;
+}
+
+/* =========================
+   情報バー
+========================= */
+
+.info{
+    width:min(1000px,95%);
+
+    color:var(--text-sub);
+
+    margin-top:15px;
+}
+
+/* =========================
+   フッター
+========================= */
+
+footer{
+    margin-top:auto;
+
+    width:100%;
+
+    text-align:center;
+
+    padding:25px;
+
+    color:var(--text-sub);
+}
+
+/* =========================
+   スクロールバー
+========================= */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:var(--main);
+
+    border-radius:999px;
+}
+
+/* =========================
+   モバイル
+========================= */
+
+@media (max-width:900px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .logo{
+        font-size:48px;
+    }
+
+    .search-box{
+        font-size:16px;
+    }
+
+    .tabs{
+        justify-content:center;
+    }
+
+}
+
+@media (max-width:600px){
+
+    .logo{
+        font-size:40px;
+    }
+
+    .buttons button{
+        width:100%;
+
+        margin:
+            5px 0;
+    }
+
+}
+```
