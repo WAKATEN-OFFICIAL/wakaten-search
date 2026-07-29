@@ -166,6 +166,15 @@ footer{
     }
 
 }
+
+.logo-link,.logo-link:link,.logo-link:visited,.logo-link:hover,.logo-link:active{
+text-decoration:none !important;
+color:inherit;
+display:inline-block;
+}
+.logo{cursor:pointer;transition:.2s;}
+.logo:hover{transform:scale(1.05);}
+
 </style>
 </head>
 
@@ -175,11 +184,9 @@ footer{
 
 <div class="top">
 
-<a href="./" class="logo-link">
-<div class="logo">
+<a href="./" class="logo-link"><div class="logo">
 <span class="b">W</span><span class="r">A</span><span class="y">K</span><span class="b">A</span><span class="g">T</span><span class="r">E</span><span class="b">N</span>
-</div>
-</a>
+</div></a>
 
 <div class="search">
 <input id="searchBox" placeholder="検索">
@@ -356,27 +363,4 @@ function openNews(){
 window.open(
 "https://news.google.com/search?q="+
 encodeURIComponent(q),
-"_blank"
-);
-}
-
-function openImages(){
-window.open(
-"https://www.google.com/search?tbm=isch&q="+
-encodeURIComponent(q),
-"_blank"
-);
-}
-
-function openMaps(){
-window.open(
-"https://www.google.com/maps/search/" +
-encodeURIComponent(q),
-"_blank"
-);
-}
-
-</script>
-
-</body>
-</html>
+"_blank
