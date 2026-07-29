@@ -335,7 +335,7 @@ historyDiv.appendChild(tag);
 
 });
 
-function openGoogle(){
+window.openGoogle=function(){
 window.open(
 "https://www.google.com/search?q="+
 encodeURIComponent(q),
@@ -343,7 +343,7 @@ encodeURIComponent(q),
 );
 }
 
-function openYoutube(){
+window.openYoutube=function(){
 window.open(
 "https://www.youtube.com/results?search_query="+
 encodeURIComponent(q),
@@ -351,7 +351,7 @@ encodeURIComponent(q),
 );
 }
 
-function openWiki(){
+window.openWiki=function(){
 window.open(
 "https://ja.wikipedia.org/wiki/" +
 encodeURIComponent(q),
@@ -359,8 +359,31 @@ encodeURIComponent(q),
 );
 }
 
-function openNews(){
+window.openNews=function(){
 window.open(
 "https://news.google.com/search?q="+
 encodeURIComponent(q),
-"_blank
+"_blank"
+);
+}
+
+window.openImages=function(){
+window.open(
+"https://www.google.com/search?tbm=isch&q="+
+encodeURIComponent(q),
+"_blank"
+);
+}
+
+window.openMaps=function(){
+window.open(
+"https://www.google.com/maps/search/" +
+encodeURIComponent(q),
+"_blank"
+);
+}
+
+</script>
+
+</body>
+</html>
